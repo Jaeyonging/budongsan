@@ -1,20 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetHouseData } from '../api'
 import axios from 'axios'
+import { TodayTradeCard } from '../components/TodayTradeCard'
 
 export const Home = () => {
+  const [data, setData] = useState("")
+  const [cityNumber, setCityNumber] = useState("11680")
+  const [isLoading, setLoading] = useState(false)
   useEffect(() => {
-    GetHouseData("11500", "202407").then((response => {
-      console.log(response.data)
+    setLoading(true)
+    GetHouseData(cityNumber, "202407").then((response => {
+      setData(response)
+      setLoading(false)
     })
     ).catch(error => {
       console.log(error)
     })
 
-  }, [])
+  }, [cityNumber])
   return (
-    <div className='bg-[gray] w-[100vw] h-[100vh]'>
-
+    <div className='flex w-[100vw]'>
+      {
+        !isLoading ? <TodayTradeCard data={data} setCityNumber={setCityNumber}></TodayTradeCard>
+          : <div>Loading</div>
+      }
     </div>
   )
 }
