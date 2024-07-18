@@ -29,7 +29,7 @@ export const TodayTradeCard = ({ data, setCityNumber }: Props) => {
 
     return (
         <div className='flex flex-col w-[520px] bg-[gray] text-[20px] text-center'>
-            오늘의 실거래 {today.getFullYear()}년 {today.getMonth() + 1}월 {today.getDay()}일
+            오늘의 실거래 {today.getFullYear()}년 {today.getMonth() + 1}월 {today.getDate()}일
             <div className='flex flex-row flex-wrap'>
                 <LocationButton title='강남구' setCityNumber={setCityNumber}></LocationButton>
                 <LocationButton title='강동구' setCityNumber={setCityNumber}></LocationButton>
