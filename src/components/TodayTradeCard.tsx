@@ -48,7 +48,6 @@ export const TodayTradeCard = () => {
         }).catch((err) => {
             console.log(err)
         })
-
     }, [cityNumber])
 
     const today = new Date()
