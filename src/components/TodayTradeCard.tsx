@@ -35,45 +35,20 @@ export const TodayTradeCard = () => {
     const [currentNumber, setCurrentNumber] = useState("")
 
     useEffect(() => {
-        const fetchData = async () => {
-            setCurrentNumber(cityNumber)
-            setLoading(true)
-            try {
-                const response = await GetHouseData(cityNumber, "202407")
-                if (Array.isArray(response)) {
-                    setHouseData(response)
-                } else {
-                    console.error('Expected an array for houseData but received:', response)
-                    setHouseData([])
-                }
-            } catch (error) {
-                console.log(error)
-                setHouseData([])
-            } finally {
-                setLoading(false)
-            }
-        }
+        setLoading(true)
+        GetHouseData(cityNumber, "202407").then((response) => {
+            setHouseData(response)
+            setLoading(false)
+        }).catch((err) => {
+            console.log(err)
+        })
 
-        const fetchData2 = async () => {
-            setLoading(true)
-            try {
-                const response = await GetHouseMonthData(cityNumber, "202407")
-                if (response && Array.isArray(response)) {
-                    setHouseMonthData(response)
-                } else {
-                    console.error('Expected an array for houseMonthData but received:', response)
-                    setHouseMonthData([])
-                }
-            } catch (error) {
-                console.log(error)
-                setHouseMonthData([])
-            } finally {
-                setLoading(false)
-            }
-        }
+        GetHouseMonthData(cityNumber, "202407").then((res) => {
+            setHouseMonthData(res)
+        }).catch((err) => {
+            console.log(err)
+        })
 
-        fetchData()
-        fetchData2()
     }, [cityNumber])
 
     const today = new Date()
