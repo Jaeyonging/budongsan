@@ -8,7 +8,7 @@ interface Props {
 
 export const LocationButton = ({ title, setCityNumber }: Props) => {
     const handleClick = () => {
-        const cityNumber = LocationToNumber.get(title);
+        const cityNumber = LocationToNumber.find(([name]) => name === title)?.[1];
         if (cityNumber) {
             setCityNumber(cityNumber);
         }
