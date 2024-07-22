@@ -30,20 +30,19 @@ interface HouseMonthData {
 export const TodayTradeCard = () => {
     const [houseData, setHouseData] = useState<HouseData[]>([])
     const [houseMonthData, setHouseMonthData] = useState<HouseMonthData[]>([])
-    const [cityNumber, setCityNumber] = useState("11680")
+    const [currCityNumber, setCurrCityNumber] = useState("11680")
     const [isLoading, setLoading] = useState(false)
-    const [currentNumber, setCurrentNumber] = useState("")
 
     useEffect(() => {
         setLoading(true)
-        GetHouseData(cityNumber, "202407").then((response) => {
+        GetHouseData(currCityNumber, "202407").then((response) => {
             setHouseData(response)
             setLoading(false)
         }).catch((err) => {
             console.log(err)
         })
 
-        GetHouseMonthData(cityNumber, "202407").then((res) => {
+        GetHouseMonthData(currCityNumber, "202407").then((res) => {
             if (res == null) {
                 return
             }
@@ -51,7 +50,7 @@ export const TodayTradeCard = () => {
         }).catch((err) => {
             console.log(err)
         })
-    }, [cityNumber])
+    }, [currCityNumber])
 
     const today = new Date()
 
@@ -77,9 +76,9 @@ export const TodayTradeCard = () => {
                     <LocationButton
                         key={`${cityNumber}-${index}`}
                         title={title}
-                        setCityNumber={setCityNumber}
+                        setCurrCityNumber={setCurrCityNumber}
                         cityNumber={cityNumber}
-                        currentNumber={currentNumber}
+                        currentNumber={currCityNumber}
                     />
                 ))}
             </div>
@@ -87,7 +86,7 @@ export const TodayTradeCard = () => {
                 houseData.length > 0 ? (
                     <div className='flex flex-col text-start'>
                         {houseData.map((item, index) => (
-                            <div key={index} className='text-[black] bg-[green] p-2 m-2'>
+                            <div key={index} className=' flex flex-col text-[black]  bg-[green] p-2 m-2'>
                                 <p>주소: {getAddress(item.도로명, item.도로명건물본번호코드, item.도로명건물부번호코드)}</p>
                                 <p>지번: {item.지번}</p>
                                 <p>아파트: {item.아파트}아파트 {item.층}층</p>
