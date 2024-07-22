@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { LocationButton } from './LocationButton'
-import { LocationToNumber } from '../types/example'
 import { GetHouseData } from '../api'
+import { BusanLocationToNumber, SeoulLocationToNumber } from '../types/example';
 
 interface HouseData {
     거래금액: string;
@@ -72,13 +72,20 @@ export const TodayTradeCard = () => {
         <div className='flex flex-col w-[520px] bg-[gray] text-[20px] text-center'>
             이번 {today.getMonth() + 1}월 달의 실거래
             <div className='flex flex-row flex-wrap'>
-                {LocationToNumber.map(([title, cityNumber], index) => (
+                {SeoulLocationToNumber.map(([title, cityNumber], index) => (
                     <LocationButton
                         key={`${cityNumber}-${index}`}
                         title={title}
                         setCityNumber={() => setCityNumber(cityNumber)}
                     />
                 ))}
+                {/* {BusanLocationToNumber.map(([title, cityNumber], index) => (
+                    <LocationButton
+                        key={`${cityNumber}-${index}`}
+                        title={title}
+                        setCityNumber={() => setCityNumber(cityNumber)}
+                    />
+                ))} */}
             </div>
             {isLoading ? <div>Loading...</div> :
                 houseData.length ? (

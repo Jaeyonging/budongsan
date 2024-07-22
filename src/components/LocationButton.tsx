@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocationToNumber } from '../types/example'
+import { SeoulLocationToNumber } from '../types/example';
 
 interface Props {
     title: string
@@ -8,7 +8,7 @@ interface Props {
 
 export const LocationButton = ({ title, setCityNumber }: Props) => {
     const handleClick = () => {
-        const cityNumber = LocationToNumber.find(([name]) => name === title)?.[1];
+        const cityNumber = SeoulLocationToNumber.find(([name]) => name === title)?.[1];
         if (cityNumber) {
             setCityNumber(cityNumber);
         }
