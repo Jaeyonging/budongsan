@@ -5,7 +5,7 @@
             "destination": "http://openapi.molit.go.kr/$1"
         },
         {
-            "source": "/monthapi/",
+            "source": "/monthapi/(.*)",
             "destination": "http://openapi.molit.go.kr:8081/$1"
         },
         {
