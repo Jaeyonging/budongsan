@@ -6,7 +6,7 @@
         },
         {
             "source": "/monthapi/(.*)",
-            "destination": "http://openapi.molit.go.kr:8081/$1"
+            "destination": "http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/$1"
         },
         {
             "source": "/(.*)",

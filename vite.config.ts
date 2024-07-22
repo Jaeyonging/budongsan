@@ -16,7 +16,7 @@ export default defineConfig({
       },
 
       '/monthapi': {
-        target: 'http://openapi.molit.go.kr:8081',
+        target: 'http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/monthapi/, '')
       }
