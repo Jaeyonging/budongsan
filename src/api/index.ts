@@ -14,6 +14,7 @@ export async function GetHouseMonthData(code: string, date: string) {
         console.log(response)
         return response.data.response.body.items.item
     }).catch((err) => {
+        console.log(err)
         return err
     });
 }
