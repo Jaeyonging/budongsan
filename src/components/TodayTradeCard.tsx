@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { LocationButton } from './LocationButton'
 import { GetHouseData, GetHouseMonthData } from '../api'
-import { BusanLocationToNumber, calculatePrice, calculateSize, getAddress, SeoulLocationToNumber } from '../types/types';
+import { calculatePrice, calculateSize, getAddress, SeoulLocationToNumber } from '../types/types';
 
 interface HouseData {
     거래금액: string;
@@ -58,7 +58,7 @@ export const TodayTradeCard = () => {
             setLoading(true)
             try {
                 const response = await GetHouseMonthData(cityNumber, "202407")
-                if (Array.isArray(response)) {
+                if (response && Array.isArray(response)) {
                     setHouseMonthData(response)
                 } else {
                     console.error('Expected an array for houseMonthData but received:', response)

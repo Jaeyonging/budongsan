@@ -8,32 +8,47 @@ export interface QTest {
 }
 
 export const calculateSize = (size: number) => {
-    return (size * 0.3025).toFixed(2)
+    if (typeof size !== 'number' || isNaN(size)) {
+        return 'Invalid size';
+    }
+    return (size * 0.3025).toFixed(2);
 }
 
+
 export const calculatePrice = (price: string | number) => {
-    if (price) {
-        let priceString = typeof price === 'string' ? price : price.toString();
-        let cleanedPrice = priceString.replace(/,/g, "");
-        let num = parseInt(cleanedPrice, 10) / 10000;
-        let num2 = parseInt(cleanedPrice, 10) % 10000;
-        if (Math.floor(num) == 0) {
-            return num2 + "만원";
-        }
-        return Math.floor(num) + "억" + num2 + "만원";
+    if (!price) {
+        return "0원";
     }
-    return "0원";
+
+    let priceString = typeof price === 'string' ? price : price.toString();
+    let cleanedPrice = priceString.replace(/,/g, "");
+    let num = parseInt(cleanedPrice, 10) / 10000;
+    let num2 = parseInt(cleanedPrice, 10) % 10000;
+
+    if (isNaN(num) || isNaN(num2)) {
+        return 'Invalid price';
+    }
+
+    if (Math.floor(num) === 0) {
+        return num2 + "만원";
+    }
+    return Math.floor(num) + "억" + (num2 > 0 ? num2 + "만원" : "");
 }
 
 
 export const getAddress = (roadname: string, roadbuilding: string, roadbuilding2: string) => {
     const mainNumber = parseInt(roadbuilding, 10);
     const subNumber = parseInt(roadbuilding2, 10);
-    if (subNumber == 0) {
+
+    if (isNaN(mainNumber) || isNaN(subNumber)) {
+        return 'Invalid address';
+    }
+
+    if (subNumber === 0) {
         return `${roadname} ${mainNumber}`;
     }
     return `${roadname} ${mainNumber}-${subNumber}`;
-};
+}
 
 
 export const SeoulLocationToNumber: [string, string][] = [ //서울
