@@ -43,7 +43,7 @@ export const TodayTradeCard = () => {
             console.log(err)
         })
 
-        GetHouseMonthData(cityNumber, "202407").then((res) => {
+        GetHouseMonthData(parseInt(cityNumber), 202407).then((res) => {
             if (res == null) {
                 return
             }
