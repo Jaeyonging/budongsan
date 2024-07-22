@@ -12,10 +12,10 @@ export async function GetHouseData(code: string, date: string) {
 export async function GetHouseMonthData(code: string, date: string) {
     const url = `/monthapi/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptRent?LAWD_CD=${code}&DEAL_YMD=${date}&serviceKey=${service_Key}`;
     return axios.get(url).then((response) => {
-        console.log(response);
+        console.log('Response:', response);
         return response.data.response.body.items.item;
     }).catch((err) => {
-        console.error('Error fetching data:', err);
+        console.error('Error fetching data:', err.response ? err.response.data : err);
         return err;
     });
 }
