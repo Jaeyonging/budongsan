@@ -7,6 +7,31 @@ export interface QTest {
     answer05: string
 }
 
+export const calculateSize = (size: number) => {
+    return (size * 0.3025).toFixed(2)
+}
+
+export const calculatePrice = (price: string | number) => {
+    if (price) {
+        let priceString = typeof price === 'string' ? price : price.toString();
+        let cleanedPrice = priceString.replace(/,/g, "");
+        let num = parseInt(cleanedPrice, 10) / 10000;
+        let num2 = parseInt(cleanedPrice, 10) % 10000;
+        return Math.floor(num) + "억" + num2 + "만원";
+    }
+    return "0원";
+}
+
+
+export const getAddress = (roadname: string, roadbuilding: string, roadbuilding2: string) => {
+    const mainNumber = parseInt(roadbuilding, 10);
+    const subNumber = parseInt(roadbuilding2, 10);
+    if (subNumber == 0) {
+        return `${roadname} ${mainNumber}`;
+    }
+    return `${roadname} ${mainNumber}-${subNumber}`;
+};
+
 
 export const SeoulLocationToNumber: [string, string][] = [ //서울
     ["강남구", "11680"],
@@ -28,8 +53,7 @@ export const SeoulLocationToNumber: [string, string][] = [ //서울
     ["성북구", "11290"],
     ["송파구", "11710"],
     ["양천구", "11470"],
-    ["영등포구", "11350"],
-    ["용산구", "11560"],
+    ["영등포구", "11560"],
     ["용산구", "11170"],
     ["은평구", "11380"],
     ["종로구", "11110"],
