@@ -76,19 +76,13 @@ export const TodayTradeCard = () => {
                     <LocationButton
                         key={`${cityNumber}-${index}`}
                         title={title}
-                        setCityNumber={() => setCityNumber(cityNumber)}
+                        setCityNumber={setCityNumber}
+                        cityNumber={cityNumber}
                     />
                 ))}
-                {/* {BusanLocationToNumber.map(([title, cityNumber], index) => (
-                    <LocationButton
-                        key={`${cityNumber}-${index}`}
-                        title={title}
-                        setCityNumber={() => setCityNumber(cityNumber)}
-                    />
-                ))} */}
             </div>
             {isLoading ? <div>Loading...</div> :
-                houseData.length ? (
+                houseData.length > 0 ? (
                     <div className='flex flex-col text-start'>
                         {houseData.map((item, index) => (
                             <div key={index} className='text-[black] bg-[green] p-2 m-2'>
