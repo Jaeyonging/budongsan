@@ -15,11 +15,11 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/, '')
       },
 
-      '/monthapi': {
-        target: 'http://openapi.molit.go.kr:8081',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/monthapi/, '')
-      }
+      // '/monthapi': {
+      //   target: 'http://openapi.molit.go.kr:8081',
+      //   changeOrigin: true,
+      //   rewrite: path => path.replace(/^\/monthapi/, '')
+      // }
     },
   },
 
