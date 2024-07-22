@@ -10,8 +10,8 @@ export async function GetHouseData(code: string, date: string) {
     });
 }
 
-export async function GetHouseMonthData(code: string, date: string) {
-    return axios.get(`/monthapi/getRTMSDataSvcAptRent?LAWD_CD=${code}&DEAL_YMD=${date}&serviceKey=${service_Key}`).then((response) => {
+export async function GetHouseMonthData(code: number, date: number) {
+    return axios.get(`/monthapi/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptRent?LAWD_CD=${code}&DEAL_YMD=${date}&serviceKey=${service_Key}`).then((response) => {
         console.log(response)
         return response.data.response.body.items.item
     }).catch((err) => {
