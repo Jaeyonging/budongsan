@@ -32,7 +32,7 @@ export const TodayTradeCard = () => {
     const [houseMonthData, setHouseMonthData] = useState<HouseMonthData[]>([])
     const [cityNumber, setCityNumber] = useState("11680")
     const [isLoading, setLoading] = useState(false)
-    const [currentNubmer, setCurrentNumber] = useState("")
+    const [currentNumber, setCurrentNumber] = useState("")
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,24 +40,38 @@ export const TodayTradeCard = () => {
             setLoading(true)
             try {
                 const response = await GetHouseData(cityNumber, "202407")
-                setHouseData(response)
+                if (Array.isArray(response)) {
+                    setHouseData(response)
+                } else {
+                    console.error('Expected an array for houseData but received:', response)
+                    setHouseData([])
+                }
             } catch (error) {
                 console.log(error)
+                setHouseData([])
             } finally {
                 setLoading(false)
             }
         }
+
         const fetchData2 = async () => {
             setLoading(true)
             try {
                 const response = await GetHouseMonthData(cityNumber, "202407")
-                setHouseMonthData(response)
+                if (Array.isArray(response)) {
+                    setHouseMonthData(response)
+                } else {
+                    console.error('Expected an array for houseMonthData but received:', response)
+                    setHouseMonthData([])
+                }
             } catch (error) {
                 console.log(error)
+                setHouseMonthData([])
             } finally {
                 setLoading(false)
             }
         }
+
         fetchData()
         fetchData2()
     }, [cityNumber])
@@ -88,7 +102,7 @@ export const TodayTradeCard = () => {
                         title={title}
                         setCityNumber={setCityNumber}
                         cityNumber={cityNumber}
-                        currentNumber={currentNubmer}
+                        currentNumber={currentNumber}
                     />
                 ))}
             </div>

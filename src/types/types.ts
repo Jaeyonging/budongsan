@@ -17,6 +17,9 @@ export const calculatePrice = (price: string | number) => {
         let cleanedPrice = priceString.replace(/,/g, "");
         let num = parseInt(cleanedPrice, 10) / 10000;
         let num2 = parseInt(cleanedPrice, 10) % 10000;
+        if (Math.floor(num) == 0) {
+            return num2 + "만원";
+        }
         return Math.floor(num) + "억" + num2 + "만원";
     }
     return "0원";
