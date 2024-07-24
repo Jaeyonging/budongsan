@@ -35,22 +35,6 @@ export const calculatePrice = (price: string | number) => {
     return Math.floor(num) + "억" + (num2 > 0 ? num2 + "만원" : "");
 }
 
-
-export const getAddress = (roadname: string, roadbuilding: string, roadbuilding2: string) => {
-    const mainNumber = parseInt(roadbuilding, 10);
-    const subNumber = parseInt(roadbuilding2, 10);
-
-    if (isNaN(mainNumber) || isNaN(subNumber)) {
-        return 'Invalid address';
-    }
-
-    if (subNumber === 0) {
-        return `${roadname} ${mainNumber}`;
-    }
-    return `${roadname} ${mainNumber}-${subNumber}`;
-}
-
-
 export const SeoulLocationToNumber: [string, string][] = [ //서울
     ["강남구", "11680"],
     ["강동구", "11740"],

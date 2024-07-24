@@ -10,10 +10,15 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://openapi.molit.go.kr',
+        target: 'https://apis.data.go.kr',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
       },
+      // '/api': {
+      //   target: 'http://openapi.molit.go.kr',
+      //   changeOrigin: true,
+      //   rewrite: path => path.replace(/^\/api/, '')
+      // },
 
       '/monthapi': {
         target: 'http://openapi.molit.go.kr:8081',

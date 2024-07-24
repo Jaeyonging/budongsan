@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { LocationButton } from './LocationButton'
 import { GetHouseData, GetHouseMonthData } from '../api'
-import { calculatePrice, calculateSize, getAddress, SeoulLocationToNumber } from '../types/types';
+import { calculatePrice, calculateSize, SeoulLocationToNumber } from '../types/types';
 
 interface HouseData {
-    거래금액: string;
-    거래유형: string;
-    건축년도: number;
-    년: number;
-    도로명: string;
-    도로명건물본번호코드: string,
-    도로명건물부번호코드: string,
-    지번: string,
-    월: string,
-    일: string,
-    아파트: string,
-    전용면적: number,
-    층: string
+    dealAmount: string;
+    dealingGbn: string;
+    buildYear: number;
+    dealYear: number;
+    jibun: string,
+    dealMonth: string,
+    dealDay: string,
+    aptNm: string,
+    excluUseAr: number,
+    floor: string,
+    umdNm: string,
 }
 
 interface HouseMonthData {
@@ -87,15 +85,13 @@ export const TodayTradeCard = () => {
                     <div className='flex flex-col text-start'>
                         {houseData.map((item, index) => (
                             <div key={index} className=' flex flex-col text-[black]  bg-[green] p-2 m-2'>
-                                <p>주소: {getAddress(item.도로명, item.도로명건물본번호코드, item.도로명건물부번호코드)}</p>
-                                <p>지번: {item.지번}</p>
-                                <p>아파트: {item.아파트}아파트 {item.층}층</p>
-                                <p>평수: {calculateSize(item.전용면적)}평</p>
-                                <p>거래금액: {calculatePrice(item.거래금액)}</p>
-                                <p>거래일: {item.년}년 {item.월}월 {item.일}일</p>
-                                <p>거래유형: {item.거래유형}</p>
-                                <p>건축년도: {item.건축년도}</p>
-                                <div>{renderMonthPrice(item.지번)}</div>
+                                <p>주소: {item.umdNm} {item.jibun} {item.aptNm}아파트 {item.floor}층</p>
+                                <p>평수: {calculateSize(item.excluUseAr)}평</p>
+                                <p>거래금액: {calculatePrice(item.dealAmount)}</p>
+                                <p>거래일: {item.dealYear}년 {item.dealMonth}월 {item.dealDay}일</p>
+                                <p>거래유형: {item.dealingGbn}</p>
+                                <p>건축년도: {item.buildYear}</p>
+                                <div>{renderMonthPrice(item.jibun)}</div>
                             </div>
                         ))}
                     </div>

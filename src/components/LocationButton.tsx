@@ -10,7 +10,7 @@ interface Props {
 export const LocationButton = ({ title, setCurrCityNumber, cityNumber, currentNumber }: Props) => {
     return (
         <button
-            className={`bg-[red] p-2 rounded-[10px] m-[10px] hover:bg-[green] ${cityNumber == currentNumber && "bg-[#18fa8d]"}`}
+            className={`bg-[red] p-2 rounded-[10px] m-[10px] hover:bg-[green] ${cityNumber == currentNumber && "bg-[yellow]"}`}
             onClick={() => setCurrCityNumber(cityNumber)}
         >
             {title}
