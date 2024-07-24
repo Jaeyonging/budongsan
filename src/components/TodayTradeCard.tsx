@@ -41,6 +41,7 @@ export const TodayTradeCard = () => {
         })
 
         GetHouseMonthData(currCityNumber, "202407").then((res) => {
+            console.log(res)
             if (res == null) {
                 return
             }
